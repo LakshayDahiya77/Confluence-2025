@@ -21,39 +21,23 @@ type SponsorSection = {
 
 const sponsorSections: SponsorSection[] = [
   {
-    heading: "Title Sponsors",
+    heading: "",
     sponsors: [
-      { name: "Stellar Motors", logo: "/sadf.jpg" },
-      { name: "Nova FinCorp", logo: "/sadf.jpg" },
-    ],
+      { name: "Title Sponsor", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761776975/Frame_6_ovygne.png" },
+       { name: "Associate Sponsor", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761776977/Frame_7_dhtso3.png" },
+        { name: "Bath & Body Care Partner", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761777213/Bath_and_Body_Care_Partner-01_yikda6.png" },
+        { name: "Event Sponsor", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761776975/Frame_3_f63gkl.png" },
+        { name: "Gaming Partner", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761776977/Frame_2_p2ixkg.png" },
+        { name: "Health Partner", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761776976/Frame_1_thjs1t.png" },
+        { name: "Hydration Partner", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761778434/Bisleri-logo_1_-02_uk3vbk.png" },
+        { name: "Music Streaming Partner", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761778730/Jio_Saavn_Logo_-_White_1_-01_y5thay.png" },
+        { name: "Official Partner", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761778633/WhatsApp_Image_2025-10-26_at_08.32.48_50955266_2_uv0sat.png" },
+        { name: "Refreshment Partner", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761776976/Frame_8_zx36bt.png" },
+        { name: "Snacking Partner", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761778925/Frame_9_oxoau1.png" },
+        { name: "Alumni Network Navigators", logo: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761779008/Alumni_Network_Navigators-01_peog5m.png" },
+        ],
   },
-  {
-    heading: "Associate Sponsors",
-    sponsors: [
-      { name: "Orbit Beverages", logo: "/sadf.jpg" },
-      { name: "Nebula Networks", logo: "/sadf.jpg" },
-      { name: "Galaxy Grocers", logo: "/sadf.jpg" },
-    ],
-  },
-  {
-    heading: "Fashion Partner",
-    sponsors: [{ name: "Cosmic Couture", logo: "/sadf.jpg" }],
-  },
-  {
-    heading: "Hospitality Partners",
-    sponsors: [
-      { name: "Aurora Resorts", logo: "/sadf.jpg" },
-      { name: "Lunar Lounge", logo: "/sadf.jpg" },
-    ],
-  },
-  {
-    heading: "Media & Outreach",
-    sponsors: [
-      { name: "Celestial FM", logo: "/sadf.jpg" },
-      { name: "Zenith Times", logo: "/sadf.jpg" },
-      { name: "Meteor Media", logo: "/sadf.jpg" },
-    ],
-  },
+ 
 ];
 
 const pageStyles = {

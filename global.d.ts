@@ -6,22 +6,24 @@ declare module 'ogl' {
     render(params: { scene: Mesh }): void;
   }
 
+  export type UniformValue = number | boolean | string | Float32Array | WebGLTexture | ArrayBuffer | object | null;
+
   export class Program {
     constructor(
       gl: WebGLRenderingContext,
       options: {
         vertex: string;
         fragment: string;
-        uniforms?: Record<string, { value: any }>;
+        uniforms?: Record<string, { value: UniformValue }>;
       }
     );
-    uniforms: Record<string, { value: any }>;
+    uniforms: Record<string, { value: UniformValue }>;
   }
 
   export class Mesh {
     constructor(
       gl: WebGLRenderingContext,
-      options: { geometry: any; program: Program }
+      options: { geometry: Triangle; program: Program }
     );
   }
 

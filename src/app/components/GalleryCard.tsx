@@ -40,7 +40,7 @@ export default function Card(props: inputProps) {
               style={tileInnerStyle}
             >
               <Image
-                src="/sadf.jpg"
+                src={props.image}
                 alt={props.title}
                 fill
                 className="object-cover"
@@ -74,7 +74,7 @@ export default function Card(props: inputProps) {
             style={tileInnerStyle}
           >
             <Image
-              src="/sadf.jpg"
+              src={props.image}
               alt={props.image || props.title}
               fill
               className="object-cover"
@@ -94,7 +94,7 @@ export default function Card(props: inputProps) {
               style={tileInnerStyle}
             >
               <Image
-                src="/sadf.jpg"
+                src="https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761599547/77928372_SL-072622-51930-16_pjvags.jpg"
                 alt={`${props.day} background`}
                 fill
                 className="object-cover"
@@ -116,14 +116,14 @@ export default function Card(props: inputProps) {
             >
               <div className="relative h-24 w-full overflow-hidden sm:h-32">
                 <Image
-                  src="/sadf.jpg"
+                  src={props.vector}
                   alt={`${props.vector} artwork`}
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="flex flex-1 items-center justify-center px-3 py-4 text-center text-sm text-white sm:px-4 sm:py-6 sm:text-base">
-                {props.vector}
+                {/* {props.vector} */}
               </div>
             </div>
           </article>
