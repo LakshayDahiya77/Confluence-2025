@@ -9,35 +9,94 @@ import {
 import { contentContainerClass } from "./layoutTokens";
 
 const teamMembers = [
+
   {
-    name: "William Foster",
-    role: "Co-Founder & CEO",
-    img: "/sadf.jpg",
+    name: "Lakshay Dahiya",
+    role: "Developer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761762968/IMG_0098_-_Square_1_ic22s6.png",
+    linkedIn: "https://www.linkedin.com/in/lakshaydahiya77/",
+    github: "https://github.com/LakshayDahiya77",
+    instagram: "https://www.instagram.com/78_avs",
   },
   {
-    name: "Emily Jonson",
-    role: "CEO",
-    img: "/sadf.jpg",
+    name: "Nitin Walia",
+    role: " Developer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744639/1000174714-removebg-preview_rfkehx.png",
+     linkedIn: "https://www.linkedin.com/in/nitin-walia-511222304?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    github: "https://github.com/walianitin",
+    instagram: "https://www.instagram.com/walianitin",
   },
   {
-    name: "Harshita Patel",
-    role: "HR",
-    img: "/sadf.jpg",
+    name: "Prakhar singh Parmar",
+    role: " Developer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744067/Prakhar_Event_head_vbqzoi.jpg",
+     linkedIn: "https://www.linkedin.com/in/prakhar-rajput-31a389191?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    github: "https://github.com/PrakharSingh42",
+    instagram: "https://www.instagram.com/prakhar6165?igsh=MWdqMzUxM3ozOTZtZg==",
   },
   {
-    name: "Eleanor Morales",
-    role: "HR",
-    img: "/sadf.jpg",
+    name: "Tanish Sharma",
+    role: "Developer ",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744034/IMG_20251029_172047_gzuquh.jpg",
+     linkedIn: "https://www.linkedin.com/in/tanish-sharma-8b3243250/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    github: "https://github.com/tanishsh003",
+    instagram: "https://www.instagram.com/tanish_editz._?igsh=dnV4ZmN2b3M3dXZq",
   },
   {
-    name: "Sophia Monic",
-    role: "Product Manager",
-    img: "/sadf.jpg",
+    name: "Piyush Mishra",
+    role: "Developer ",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761735860/DSC_0832_1_-_PIYUSH_MISHRA_gzwcib.jpg",
+     linkedIn: "",
+    github: "https://www.linkedin.com/in/nitin-walia-511222304?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "",
+  }, 
+  {
+    name: "Deepanshu",
+    role: "Developer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744028/DSC_1285_qbensa.jpg",
+     linkedIn: "https://www.instagram.com/its_d_eep21/",
+    github: "http://github.com/Deep-2108",
+    instagram: "https://www.instagram.com/its_d_eep21/",
+  },
+   {
+    name: "Harsh Sharma",
+    role: "UI/UX designer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744002/Screenshot_2025-10-29_184735_swbiwz.png",
+    linkedIn: "https://www.linkedin.com/in/harsh-raj-25741a249/",
+    github: "#",
+    instagram: "https://www.instagram.com/__harsh._sharma._/",
+  },
+   {
+    name: "Khalid",
+    role: "Developer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744036/6EDEFDD5-8EEE-4A70-9A1F-A45AEFF5DCC4_htmspl.png",
+     linkedIn: "https://www.linkedin.com/in/khalidahmad25/",
+    github: "https://github.com/khalidking2018",
+    instagram: "https://www.instagram.com/",
+  }, 
+  {
+    name: "Sandhya Rani",
+    role: "Developer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744039/20250226_155632_jlpp7l.jpg",
+     linkedIn: "https://www.linkedin.com/in/sandhya-rani-jam",
+    github: "https://github.com/Sandhya-jam",
+    instagram: "https://www.instagram.com/sandhya_jam?igsh=MTg3eWRzdTluZTRtcQ==",
   },
   {
-    name: "James Miller",
-    role: "Marketing Lead",
-    img: "/sadf.jpg",
+    name: "Aayush Kashyap",
+    role: "UI/UX Designer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744029/formal-pic_m4qhsq.png",
+     linkedIn: "https://www.linkedin.com/in/aayushkashyap617/",
+    github: "https://github.com/Aayush1904Kashyap",
+    instagram: "https://www.instagram.com/aayush._.kashyap",
+  },
+  {
+    name: "Dushyant",
+    role: "UI/UX Designer",
+    img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761744933/IMG-20250907-WA0163_t0bwik.jpg",
+     linkedIn: "https://www.linkedin.com/in/dushyant107?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    github: "#",
+    instagram: "https://www.instagram.com/dushyant.107?igsh=ZmZheHptN3RtNjV1",
   },
 ];
 
@@ -74,7 +133,7 @@ export default function TeamSection() {
 
               <div className="mt-3 flex justify-center gap-3 text-base text-gray-400 sm:mt-4 sm:gap-4 sm:text-lg">
                 <a
-                  href="#"
+                  href={member.linkedIn}
                   aria-label="LinkedIn profile"
                   className="inline-block"
                   target="_blank"
@@ -90,7 +149,7 @@ export default function TeamSection() {
                 </a>
 
                 <a
-                  href="#"
+                  href={member.github}
                   aria-label="GitHub profile"
                   className="inline-block"
                   target="_blank"
@@ -106,7 +165,7 @@ export default function TeamSection() {
                 </a>
 
                 <a
-                  href="#"
+                  href={member.instagram}
                   aria-label="Instagram profile"
                   className="inline-block"
                   target="_blank"

@@ -204,7 +204,7 @@ export default function LandingPage() {
   const handleVideoTransition = useCallback(() => {
     // Sequence 1: Show stars immediately when video fades
     setShowStars(true);
-
+   
     // Sequence 2: Show background after delay
     setTimeout(() => {
       setShowBackground(true);

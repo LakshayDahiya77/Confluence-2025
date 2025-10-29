@@ -50,6 +50,7 @@ const Footer: React.FC = () => {
                   alt={social.name}
                   className="h-5 w-5 object-contain"
                 />
+
               </a>
             ))}
           </div>
