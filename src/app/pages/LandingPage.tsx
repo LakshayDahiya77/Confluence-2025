@@ -209,7 +209,7 @@ const LandingPage = forwardRef<{ triggerPlayback: () => void }>(
     const [videoError, setVideoError] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
-    const [introComplete, setIntroComplete] = useState(false); // True when both video and audio complete
+    const [, setIntroComplete] = useState(false); // True when both video and audio complete (we only need the setter)
 
     const handleVideoTransition = useCallback(() => {
       // Sequence 1: Show stars immediately when video fades
@@ -252,40 +252,37 @@ const LandingPage = forwardRef<{ triggerPlayback: () => void }>(
       handleVideoTransition();
     }, [handleVideoTransition]);
 
-    const startPlayback = useCallback(
-      async (initiatedByUser = false) => {
-        if (!videoRef.current || !audioRef.current) return;
+    const startPlayback = useCallback(async () => {
+      if (!videoRef.current || !audioRef.current) return;
 
-        try {
-          setVideoError(false);
+      try {
+        setVideoError(false);
 
-          // Reset both to start
-          videoRef.current.currentTime = 0;
-          audioRef.current.currentTime = 0;
+        // Reset both to start
+        videoRef.current.currentTime = 0;
+        audioRef.current.currentTime = 0;
 
-          // Ensure video stays muted for autoplay compliance
-          videoRef.current.muted = true;
+        // Ensure video stays muted for autoplay compliance
+        videoRef.current.muted = true;
 
-          const videoPlayPromise = videoRef.current.play();
-          const audioPlayPromise = audioRef.current.play();
+        const videoPlayPromise = videoRef.current.play();
+        const audioPlayPromise = audioRef.current.play();
 
-          await Promise.all([videoPlayPromise, audioPlayPromise]);
-          console.log("Video and audio both playing");
-        } catch (error) {
-          console.error("Playback failed:", error);
-          setVideoError(true);
-          handleVideoComplete();
-        }
-      },
-      [handleVideoComplete]
-    );
+        await Promise.all([videoPlayPromise, audioPlayPromise]);
+        console.log("Video and audio both playing");
+      } catch (error) {
+        console.error("Playback failed:", error);
+        setVideoError(true);
+        handleVideoComplete();
+      }
+    }, [handleVideoComplete]);
 
     // Expose triggerPlayback method for parent component
     useImperativeHandle(
       ref,
       () => ({
         triggerPlayback: () => {
-          void startPlayback(true);
+          void startPlayback();
         },
       }),
       [startPlayback]

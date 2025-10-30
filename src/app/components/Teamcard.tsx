@@ -1,3 +1,5 @@
+"use client";
+
 // components/TeamSection.tsx
 
 import Image from "next/image";

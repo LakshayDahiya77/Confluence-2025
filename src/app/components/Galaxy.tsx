@@ -307,7 +307,7 @@ export default function Galaxy({
           uMouseUniform.value = new Float32Array([
             smoothMousePos.current.x,
             smoothMousePos.current.y,
-          ]) as any;
+          ]) as unknown as Float32Array;
         }
       }
 

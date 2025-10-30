@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { glassFooter, glassElement } from "./glassTokens";
 
 const socialLinks = [
@@ -45,12 +46,13 @@ const Footer: React.FC = () => {
                 aria-label={social.name}
                 className={`inline-flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:text-sky-300 sm:h-10 sm:w-10 ${glassElement}`}
               >
-                <img
+                <Image
                   src={social.img}
                   alt={social.name}
+                  width={20}
+                  height={20}
                   className="h-5 w-5 object-contain"
                 />
-
               </a>
             ))}
           </div>
