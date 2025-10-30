@@ -66,18 +66,10 @@ const GALAXY_CONFIG = {
   // === FADE EFFECT CONFIGURATION ===
   // Bottom fade for smooth transition
   fade: {
-    // Enable bottom fade effect
-    enabled: true,
-
-    // Fade start position from bottom (in vh or %)
-    // 0 = starts at very bottom, 20 = starts 20vh from bottom
-    startPosition: "20vh",
-
-    // Fade intensity (0 = no fade, 1 = full fade to transparent)
-    intensity: 1,
-
-    // Fade type: "linear" | "easeIn" | "easeOut" | "smooth"
-    type: "easeOut" as const,
+    enabled: false,
+    startPosition: "0vh",
+    intensity: 0,
+    type: "linear" as const,
   },
 };
 

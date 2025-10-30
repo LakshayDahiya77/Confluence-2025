@@ -50,10 +50,10 @@ export const galleryData: GalleryItem[] = [
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761718226/36102445_2211.w026.n002.2792B.p1.2792_zlvdws.jpg",
   },
   {
-    title: "Pro Night",
+    title: "BATTLE OF BANDS",
     content:
-      "The Folk Dance event celebrates the vibrant traditions and cultural diversity of India. Students showcase various regional dance forms like Bhangra, Garba, and Ghoomar, with colorful costumes and energetic performances.",
-    image: "/Gallery Images/DSC_1487.jpg",
+      "Bands deliver originals and inspired covers, each riff alive with intent, every beat commanding the crowd. Judged on originality, synchronization, composition, and stage presence, this is an electrifying face‑off of talent and teamwork.",
+    image: "/Gallery Images/DSC_1099.jpg",
     day: "day 3",
     vector:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761718226/36102445_2211.w026.n002.2792B.p1.2792_zlvdws.jpg",

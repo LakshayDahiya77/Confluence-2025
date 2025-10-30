@@ -167,10 +167,11 @@ export default function AnimatedDropdown({
       </div>
       <style jsx>{`
         .dropdown-scroll {
-          scrollbar-width: none;
+          /* Show default scrollbar */
+          scrollbar-width: auto;
         }
         .dropdown-scroll::-webkit-scrollbar {
-          display: none;
+          display: block;
         }
       `}</style>
     </>

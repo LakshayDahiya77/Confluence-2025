@@ -146,49 +146,49 @@ const teams = {
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739639/IMG-20250527-WA0016_-_Shreya_Sinha_qrzoy0.jpg",
     },
   ],
-  "Fine Arts and modelling": [
+  "Fine Arts and Modelling": [
     {
       name: "Sanchit Bansal",
       role: "Secretary",
-      desc: "Fine arts and modelling",
+      desc: "Fine Arts and Modelling",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739847/IMG_0607_-_SANCHIT_BANSAL_gaptpe.jpg",
     },
     {
       name: "Tammam Beentey Ali",
       role: "Secretary",
-      desc: "Fine arts and modelling",
+      desc: "Fine Arts and Modelling",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739843/Snapchat-1621291499_-_Tammam_Beentey_Ali_n5zs7v.jpg",
     },
     {
       name: "Rishika Rishika",
       role: "Secretary",
-      desc: "Fine arts and modelling",
+      desc: "Fine Arts and Modelling",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739842/IMG-20250826-WA0004_-_RISHIKA_RISHIKA_gvrv0s.jpg",
     },
     {
       name: "Jatin Garg",
       role: "Secretary",
-      desc: "Fine arts and modelling",
+      desc: "Fine Arts and Modelling",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739842/IMG-20251005-WA0001_-_Jatin_Garg_skurwp.jpg",
     },
   ],
-  "Hiking and Trekking club": [
+  "Hiking and Trekking Club": [
     {
       name: "Ansh Varshney",
       role: "Secretary",
-      desc: "Hiking and Trekking club",
+      desc: "Hiking and Trekking Club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740014/Ansh_Varshney_12212075_HTC_-_Ansh_Varshney_j4rpig.jpg",
     },
     {
       name: "Aakash Rathee",
       role: "Secretary",
-      desc: "Hiking and Trekking club",
+      desc: "Hiking and Trekking Club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740434/IMG-20250310-WA0015_Original_-_AAKASH_RATHEE_y6pdr4.jpg",
     },
     {
       name: "Kunal Barthwal",
       role: "Secretary",
-      desc: "Hiking and Trekking club",
+      desc: "Hiking and Trekking Club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740432/IMG-20251018-WA0007_-_KUNAL_BARTHWAL_thr95k.jpg",
     },
   ],
