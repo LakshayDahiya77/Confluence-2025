@@ -18,6 +18,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Confluence 2025 - Cosmic Carnival",
   description: "Annual cultural fest of the college",
+  // themeColor and viewport are handled via explicit meta tags in the head
+  // because Next.js warns when themeColor/viewport are present in metadata export
 };
 
 export default function RootLayout({
@@ -26,10 +28,48 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ backgroundColor: "#050316" }}>
+      <head>
+        <meta name="theme-color" content="#050316" />
+        <meta name="background-color" content="#050316" />
+        {/* Explicit viewport meta to replace viewport in metadata export */}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            body { 
+              background-color: #050316 !important; 
+              background-image: url('/bg-wallpaper.jpg') !important;
+              background-size: cover !important;
+              background-position: center !important;
+              background-repeat: no-repeat !important;
+              background-attachment: fixed !important;
+            }
+            html { 
+              background-color: #050316 !important; 
+            }
+            @media (max-width: 768px) {
+              body {
+                background-image: url('/bg-wallpaper-vertical.jpg') !important;
+              }
+            }
+          `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ scrollbarGutter: "stable both-edges" }}
+        style={{
+          backgroundColor: "#050316",
+          backgroundImage: "url('/bg-wallpaper.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
       >
         <ActiveSectionProvider>
           <Navbar />

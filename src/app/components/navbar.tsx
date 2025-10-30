@@ -22,12 +22,53 @@ const GlassNavBar: React.FC = () => {
   const [indicator, setIndicator] = useState({ left: 0, width: 0, height: 0 });
   const [indicatorReady, setIndicatorReady] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [shouldShowNavbar, setShouldShowNavbar] = useState(false);
   const pathname = usePathname();
   const { activeSection, setActiveSection } = useActiveSection();
   const tabsContainerRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   const isHome = pathname === "/";
+
+  // Hide navbar during intro video on homepage
+  useEffect(() => {
+    if (!isHome) {
+      setShouldShowNavbar(true);
+      return;
+    }
+
+    // Check if intro has been completed (stored in sessionStorage)
+    const introComplete = sessionStorage.getItem("introComplete");
+    if (introComplete === "true") {
+      setShouldShowNavbar(true);
+      return;
+    }
+
+    // Initially hide navbar on homepage
+    setShouldShowNavbar(false);
+
+    // Listen for intro completion event
+    const handleIntroComplete = () => {
+      setShouldShowNavbar(true);
+      sessionStorage.setItem("introComplete", "true");
+    };
+
+    window.addEventListener("introComplete", handleIntroComplete);
+
+    // Check periodically if we should show navbar (fallback)
+    const checkInterval = setInterval(() => {
+      const introCompleteFlag = sessionStorage.getItem("introComplete");
+      if (introCompleteFlag === "true") {
+        setShouldShowNavbar(true);
+        clearInterval(checkInterval);
+      }
+    }, 100);
+
+    return () => {
+      window.removeEventListener("introComplete", handleIntroComplete);
+      clearInterval(checkInterval);
+    };
+  }, [isHome]);
 
   const getActiveLink = () => {
     if (isHome) {
@@ -144,6 +185,11 @@ const GlassNavBar: React.FC = () => {
     // Close mobile menu after click
     setMobileMenuOpen(false);
   };
+
+  // Don't render navbar if it should be hidden
+  if (!shouldShowNavbar) {
+    return null;
+  }
 
   return (
     <>

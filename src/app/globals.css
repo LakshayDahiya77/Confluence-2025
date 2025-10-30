@@ -7,8 +7,7 @@
    2. FONT FACE DECLARATIONS
    3. FONT APPLICATION RULES
    4. GLOBAL RESETS & BASE STYLES
-   5. SCROLLBAR STYLING
-   6. SECTION SPACING UTILITIES
+   5. SECTION SPACING UTILITIES
 */
 
 /* ====================================
@@ -81,15 +80,6 @@
   /* Default fallback for new sections */
   --pagination-default-mobile: 6;
   --pagination-default-desktop: 9;
-
-  /* === SCROLLBAR CONFIGURATION === */
-  --scrollbar-width: 30px;
-  --scrollbar-track-bg: rgba(255, 255, 255, 0.05);
-  --scrollbar-track-border: rgba(255, 255, 255, 0.1);
-  --scrollbar-thumb-bg: rgba(255, 255, 255, 0.2);
-  --scrollbar-thumb-hover-bg: rgba(255, 255, 255, 0.3);
-  --scrollbar-thumb-border: rgba(255, 255, 255, 0.3);
-  --scrollbar-blur: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -198,10 +188,18 @@ html {
   padding: 0;
   scroll-behavior: smooth;
   overscroll-behavior: none;
+  background: var(--background);
+  background-color: #050316;
 }
 
 body {
   background: var(--background);
+  background-color: #050316;
+  background-image: url('/bg-wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--foreground);
   overflow-x: hidden;
   margin: 0;
@@ -210,6 +208,13 @@ body {
   overscroll-behavior: none;
   /* Force white text colors even in dark mode */
   -webkit-text-fill-color: var(--foreground);
+}
+
+/* Mobile wallpaper */
+@media (max-width: 768px) {
+  body {
+    background-image: url('/bg-wallpaper-vertical.jpg');
+  }
 }
 
 /* Force all text elements to use white colors */
@@ -223,45 +228,7 @@ body {
 }
 
 /* ====================================
-   5. SCROLLBAR STYLING
-   Glassmorphism custom scrollbar
-   ==================================== */
-
-/* Webkit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-  width: var(--scrollbar-width);
-  height: var(--scrollbar-width);
-}
-
-::-webkit-scrollbar-track {
-  background: var(--scrollbar-track-bg);
-  border: 1px solid var(--scrollbar-track-border);
-  border-radius: 10px;
-  backdrop-filter: blur(var(--scrollbar-blur));
-  -webkit-backdrop-filter: blur(var(--scrollbar-blur));
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-bg);
-  border: 1px solid var(--scrollbar-thumb-border);
-  border-radius: 10px;
-  backdrop-filter: blur(var(--scrollbar-blur));
-  -webkit-backdrop-filter: blur(var(--scrollbar-blur));
-  transition: background 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover-bg);
-}
-
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-track-bg);
-}
-
-/* ====================================
-   6. SECTION SPACING UTILITIES
+   5. SECTION SPACING UTILITIES
    ==================================== */
 
 /* Manual utility classes */

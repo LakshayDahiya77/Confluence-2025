@@ -26,8 +26,7 @@ const clubNames = [
   "Audio & Visual Aid",
   "Fine Arts",
   "MAD",
-  "Audio & Visual Aid",
-  "Fine arts and modelling club",
+  "Fine Arts & Modelling Club",
   "Colours",
   "Literary Society",
   "Photography Club",
@@ -36,244 +35,277 @@ const clubNames = [
 const allEvents: Event[] = [
   {
     eventName: "Picture Perfect",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595184/PerfectpictureQR8_txvvz3.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595184/PerfectpictureQR8_txvvz3.png",
     venue: "Online Event",
     clubName: "Photography Club",
     description: "Intergalactic dance-off under the stars",
   },
   {
     eventName: "Cinematography",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595185/Group_15_copy_3_jk8jml.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595185/Group_15_copy_3_jk8jml.png",
     venue: "Online Event",
     clubName: "Photography Club",
     description: "Electronic beats from another dimension",
   },
   {
     eventName: "Fest through my Lens",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595186/FTML_6_mxiorg.jpg",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595186/FTML_6_mxiorg.jpg",
     venue: "Online Event",
     clubName: "Photography Club",
     description: "Runway show featuring cosmic couture",
   },
   {
     eventName: "Travel Diaries",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595187/traveldiaries_htf2yh.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595187/traveldiaries_htf2yh.png",
     venue: "Creative Space",
     clubName: "Photography Club",
     description: "Visual art from across the universe",
   },
   {
     eventName: "LimeLight",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595191/Limelight_pxpsjb.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595191/Limelight_pxpsjb.png",
     venue: "AB block",
     clubName: "Photography Club",
     description: "Spoken word under moonlight",
   },
   {
     eventName: "Impressions",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595192/Impressions_ob4skm.jpg",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595192/Impressions_ob4skm.jpg",
     venue: "Online Event",
     clubName: "Photography Club",
     description: "Compete in the ultimate esports challenge",
   },
   {
     eventName: "Get Set Logo",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595197/Get_Set_Logo_6-01-6_wqgu8q.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595197/Get_Set_Logo_6-01-6_wqgu8q.png",
     venue: "Online Event",
     clubName: "Photography Club",
     description: "Contemporary and hip-hop fusion",
   },
   {
     eventName: "Fest In Shorts",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595200/FEST_IN_SHORTS_FINAL_xg7udq.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761595200/FEST_IN_SHORTS_FINAL_xg7udq.png",
     venue: "Online Event",
     clubName: "Photography Club",
     description: "Stand-up comedy from the stars",
   },
   {
     eventName: "JigSaw",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597139/jigsaw25_1_-min_x0j4ku.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597139/jigsaw25_1_-min_x0j4ku.png",
     venue: "Photog Stall",
     clubName: "Photography Club",
     description: "Test your knowledge across dimensions",
   },
   {
     eventName: "Photo Factory",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597154/PHOTO_FACTORY_1_-min_txwqss.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597154/PHOTO_FACTORY_1_-min_txwqss.png",
     venue: "Online Event",
     clubName: "Photography Club",
     description: "Interactive theater under open skies",
   },
   {
     eventName: "Shutterbug",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597160/SHUTTERBUGFINAL2_1_-min_vy97az.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597160/SHUTTERBUGFINAL2_1_-min_vy97az.png",
     venue: "Online EVent",
     clubName: "Photography Club",
     description: "Vocal percussion from the cosmos",
   },
   {
     eventName: "Scanvenger Hunt",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597166/WDEFRG-min_khjukf.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597166/WDEFRG-min_khjukf.png",
     venue: "Photog Stall",
     clubName: "Photography Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Solo Singing",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597349/solo_Singing_sosemh.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597349/solo_Singing_sosemh.png",
     venue: "Jubilee Hall",
     clubName: "Photography Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Game Of Trails",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761716700/GOT_2_dg34jy.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761716700/GOT_2_dg34jy.png",
     venue: "OAT Backside",
     clubName: "Colours",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Colours Got Talent",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761716712/CGL9_ou4pjn.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761716712/CGL9_ou4pjn.png",
     venue: "First Floor E block",
     clubName: "Colours",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "League of Fun",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761716723/IMG_8145_lezy4i.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761716723/IMG_8145_lezy4i.png",
     venue: "Sports Complex",
     clubName: "Colours",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "WeVolve",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761716794/IMG_8125_k1i1qy.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761716794/IMG_8125_k1i1qy.png",
     venue: "ED HALL GROUND FLOOR",
     clubName: "Colours",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "CrossOver Carnival",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717028/CROSSOVER_CARNIVAL_FINAL_3_wqkdhr.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717028/CROSSOVER_CARNIVAL_FINAL_3_wqkdhr.png",
     venue: "Juiblee HAll",
     clubName: "Audio & Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Mesh It Up",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717042/music_party_night_i8hlvn.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717042/music_party_night_i8hlvn.png",
     venue: "",
     clubName: "Audio & Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Harlem Shake",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717126/HARLEM_SHAKE_jbpvgz.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717126/HARLEM_SHAKE_jbpvgz.png",
     venue: "Online Event",
     clubName: "Audio & Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "DUBSMASH",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717173/DUBSMASH_WITH_LOGOS_FINAL_io76eb.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717173/DUBSMASH_WITH_LOGOS_FINAL_io76eb.png",
     venue: "Online Event",
     clubName: "Audio & Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "BeatBoxing",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717548/BEATBOX_FINAL_2_w9a8to.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717548/BEATBOX_FINAL_2_w9a8to.png",
     venue: "Jubilee Hall",
     clubName: "Audio & Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Calligraphy",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751202/11_ty4vxm.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751202/11_ty4vxm.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Nail Painting",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751287/5_lubdik.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751287/5_lubdik.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Face Painting",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751425/2_onidbh.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751425/2_onidbh.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Digital Canvas",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751481/7_qabu3y.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751481/7_qabu3y.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Abstract Painting",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751581/9_bvpyaw.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751581/9_bvpyaw.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Waste O Wonder",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751880/4_qyldbq.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751880/4_qyldbq.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Pot Painting",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752011/6_fkwtl4.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752011/6_fkwtl4.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Let's Ink It",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752081/3_zwvlwm.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752081/3_zwvlwm.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Art A Thon",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752127/1_afzgxz.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752127/1_afzgxz.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Tattoo Making",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752140/SAVE_20251029_130908_ftn0bw.jpg",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752140/SAVE_20251029_130908_ftn0bw.jpg",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Mandala making",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752163/15_zoi53b.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752163/15_zoi53b.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
   {
     eventName: "Origasmi",
-    image: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752175/Smile_gymi5y.png",
+    image:
+      "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752175/Smile_gymi5y.png",
     venue: "ED Hall",
-    clubName: "Fine arts and modelling club",
+    clubName: "Fine Arts & Modelling Club",
     description: "Live painting inspired by the universe",
   },
 ];
-
 
 function EventCard({ event }: { event: Event }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -291,11 +323,10 @@ function EventCard({ event }: { event: Event }) {
 
   return (
     <motion.div
-      className={`relative flex cursor-pointer flex-col overflow-hidden ${cardSurfaceClasses} ${cardGlassBackground} w-full max-w-sm`}
+      className={`relative flex cursor-pointer flex-col ${cardSurfaceClasses} ${cardGlassBackground} w-full max-w-sm overflow-hidden`}
       style={{
-        aspectRatio: "3 / 4",
         borderRadius: `${CARD_OUTER_RADIUS_PX}px`,
-        minHeight: "320px",
+        minHeight: "400px",
       }}
       role="button"
       tabIndex={0}
@@ -308,58 +339,83 @@ function EventCard({ event }: { event: Event }) {
       onClick={toggleExpanded}
       onKeyDown={handleKeyDown}
     >
-      <motion.div
-        className="relative h-full w-full"
-        animate={{ scale: isExpanded ? 1.04 : 1 }}
-        transition={{ duration: 0.45, ease: "easeOut" }}
+      {/* Poster Container - Fixed layout */}
+      <div
+        className="relative w-full bg-gradient-to-b from-slate-900/50 to-slate-900/30"
+        style={{
+          aspectRatio: "3 / 4.2",
+          borderTopLeftRadius: `${overlayRadius}px`,
+          borderTopRightRadius: `${overlayRadius}px`,
+          borderBottomLeftRadius: isExpanded ? `${overlayRadius}px` : "0px",
+          borderBottomRightRadius: isExpanded ? `${overlayRadius}px` : "0px",
+        }}
       >
-        <OptimizedImage
-          src={event.image}
-          alt={event.eventName}
-          fill
-          className="object-cover"
-        />
-      </motion.div>
+        {/* Image - stays fixed */}
+        <div
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            borderTopLeftRadius: `${overlayRadius}px`,
+            borderTopRightRadius: `${overlayRadius}px`,
+            borderBottomLeftRadius: isExpanded ? `${overlayRadius}px` : "0px",
+            borderBottomRightRadius: isExpanded ? `${overlayRadius}px` : "0px",
+          }}
+        >
+          <OptimizedImage
+            src={event.image}
+            alt={event.eventName}
+            fill
+            className="object-contain"
+          />
+        </div>
+      </div>
 
+      {/* Title Bar - Only visible when NOT expanded */}
       <motion.div
-        className="absolute bottom-0 left-0 right-0 flex flex-col items-center justify-center border-t border-white/30 bg-black/20 px-5 text-center text-white backdrop-blur-lg"
+        className="flex items-center justify-center border-t border-white/30 bg-black/40 px-5 py-3 text-center text-white backdrop-blur-md"
         style={{
           borderBottomLeftRadius: `${overlayRadius}px`,
           borderBottomRightRadius: `${overlayRadius}px`,
         }}
         animate={{
-          height: isExpanded ? "100%" : "18%",
-          paddingTop: isExpanded ? "2rem" : "0.75rem",
-          paddingBottom: isExpanded ? "2rem" : "0.75rem",
-          backdropFilter: isExpanded ? "blur(24px)" : "blur(12px)",
-          backgroundColor: isExpanded
-            ? "rgba(8, 11, 26, 0.72)"
-            : "rgba(8, 11, 26, 0.35)",
+          opacity: isExpanded ? 0 : 1,
+          height: isExpanded ? 0 : "auto",
+          paddingTop: isExpanded ? 0 : "0.75rem",
+          paddingBottom: isExpanded ? 0 : "0.75rem",
         }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 0.3 }}
       >
-        <div
-          className="flex w-full items-center justify-center"
-          style={{
-            position: isExpanded ? "relative" : "absolute",
-            top: isExpanded ? "0" : "50%",
-            left: 0,
-            right: 0,
-            transform: isExpanded ? "none" : "translateY(-50%)",
-          }}
+        <h3 className="text-base font-semibold uppercase tracking-wide sm:text-lg">
+          {event.eventName}
+        </h3>
+      </motion.div>
+
+      {/* Curtain Overlay - Covers entire card from bottom to top */}
+      <motion.div
+        className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center text-white backdrop-blur-lg pointer-events-none"
+        style={{
+          borderRadius: `${CARD_OUTER_RADIUS_PX}px`,
+          backgroundColor: "rgba(8, 11, 26, 0.88)",
+        }}
+        initial={{ y: "100%" }}
+        animate={{
+          y: isExpanded ? "0%" : "100%",
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.32, 0.72, 0, 1],
+        }}
+      >
+        <motion.div
+          className="pointer-events-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isExpanded ? 1 : 0 }}
+          transition={{ duration: 0.3, delay: isExpanded ? 0.2 : 0 }}
         >
-          <h3 className="text-base font-semibold uppercase tracking-wide sm:text-lg">
+          <h3 className="text-lg font-semibold uppercase tracking-wide sm:text-xl mb-4">
             {event.eventName}
           </h3>
-        </div>{" "}
-        {isExpanded && (
-          <motion.div
-            className="mt-4 flex flex-col items-center gap-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, delay: 0.12 }}
-          >
+
+          <div className="flex flex-col items-center gap-4">
             {event.description && (
               <p className="text-sm text-slate-200">{event.description}</p>
             )}
@@ -376,8 +432,8 @@ function EventCard({ event }: { event: Event }) {
             <button className="rounded-md border border-white bg-transparent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40">
               Learn More
             </button>
-          </motion.div>
-        )}
+          </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

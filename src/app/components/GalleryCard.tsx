@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   CARD_INNER_RADIUS_PX,
   CARD_OUTER_RADIUS_PX,
@@ -28,15 +29,35 @@ export default function Card(props: inputProps) {
   } as const;
 
   return (
-    <div className="flex w-full max-w-6xl flex-col gap-6 sm:gap-8">
-      <div className="grid gap-4 sm:gap-6 md:grid-cols-[minmax(180px,1fr)_minmax(300px,1.6fr)_minmax(180px,1fr)]">
-        <div className="flex flex-col gap-4 sm:gap-6">
+    <motion.div
+      className="flex w-full max-w-6xl flex-col gap-6 sm:gap-8"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.6,
+        ease: [0.22, 0.61, 0.36, 1],
+      }}
+    >
+      <div className="grid gap-4 sm:gap-6 md:grid-cols-[minmax(220px,380px)_minmax(500px,1fr)]">
+        <motion.div
+          className="flex flex-col gap-4 sm:gap-6"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{
+            duration: 0.5,
+            delay: 0.2,
+            ease: [0.22, 0.61, 0.36, 1],
+          }}
+        >
+          {/* Day + Title Box - Two lines with Day on top */}
           <article
             className={`${cardSurfaceClasses} ${cardGlassBackground} p-2`}
             style={tileOuterStyle}
           >
             <div
-              className={`relative flex h-24 items-center justify-center overflow-hidden bg-black/40 sm:h-32 ${cardInnerRadiusClass}`}
+              className={`relative flex h-32 flex-col items-center justify-center overflow-hidden bg-black/40 sm:h-40 ${cardInnerRadiusClass}`}
               style={tileInnerStyle}
             >
               <Image
@@ -46,32 +67,52 @@ export default function Card(props: inputProps) {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-black/35" />
-              <span className="relative z-10 px-4 text-sm font-semibold uppercase tracking-wide text-white drop-shadow-lg sm:px-6 sm:text-lg">
-                {props.title}
-              </span>
+              <div className="relative z-10 flex flex-col items-center justify-center gap-1 px-4 sm:gap-2 sm:px-6">
+                <span className="text-xs font-medium uppercase tracking-wider text-white/80 drop-shadow-lg sm:text-sm">
+                  {props.day}
+                </span>
+                <span className="text-lg font-bold uppercase tracking-wide text-white drop-shadow-lg sm:text-2xl">
+                  {props.title}
+                </span>
+              </div>
             </div>
           </article>
 
+          {/* Description Box */}
           <article
             className={`${cardSurfaceClasses} ${cardGlassBackground} flex-1 p-2`}
             style={tileOuterStyle}
           >
             <div
-              className={`flex h-full w-full items-center justify-center bg-black/30 px-3 text-center text-sm text-white/90 sm:px-4 sm:text-base ${cardInnerRadiusClass}`}
+              className={`flex h-full w-full items-center justify-center bg-black/30 px-3 py-4 text-center text-sm text-white/90 sm:px-4 sm:text-base ${cardInnerRadiusClass}`}
               style={tileInnerStyle}
             >
               {props.content}
             </div>
           </article>
-        </div>
+        </motion.div>
 
-        <article
+        {/* Large Image Box - Optimized for 3:2 ratio horizontal images */}
+        <motion.article
           className={`${cardSurfaceClasses} ${cardGlassBackground} p-2`}
           style={tileOuterStyle}
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{
+            duration: 0.5,
+            delay: 0.3,
+            ease: [0.22, 0.61, 0.36, 1],
+          }}
         >
           <div
-            className={`relative h-64 w-full overflow-hidden sm:h-80 md:h-[360px] ${cardInnerRadiusClass}`}
-            style={tileInnerStyle}
+            className={`relative w-full overflow-hidden ${cardInnerRadiusClass}`}
+            style={{
+              ...tileInnerStyle,
+              aspectRatio: "3 / 2",
+              minHeight: "300px",
+              maxHeight: "600px",
+            }}
           >
             <Image
               src={props.image}
@@ -79,56 +120,11 @@ export default function Card(props: inputProps) {
               fill
               className="object-cover"
               priority
-              sizes="(max-width: 768px) 100vw, 45vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1536px) 70vw, 1000px"
             />
           </div>
-        </article>
-
-        <div className="flex flex-col gap-4 sm:gap-6">
-          <article
-            className={`${cardSurfaceClasses} ${cardGlassBackground} p-2`}
-            style={tileOuterStyle}
-          >
-            <div
-              className={`relative flex h-24 items-center justify-center overflow-hidden bg-black/40 sm:h-32 ${cardInnerRadiusClass}`}
-              style={tileInnerStyle}
-            >
-              <Image
-                src="https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761599547/77928372_SL-072622-51930-16_pjvags.jpg"
-                alt={`${props.day} background`}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-black/35" />
-              <span className="relative z-10 px-3 text-sm font-semibold uppercase tracking-wide text-white drop-shadow sm:px-4 sm:text-lg">
-                {props.day}
-              </span>
-            </div>
-          </article>
-
-          <article
-            className={`${cardSurfaceClasses} ${cardGlassBackground} flex-1 p-2`}
-            style={tileOuterStyle}
-          >
-            <div
-              className={`relative flex h-full w-full flex-col overflow-hidden ${cardInnerRadiusClass}`}
-              style={tileInnerStyle}
-            >
-              <div className="relative h-24 w-full overflow-hidden sm:h-32">
-                <Image
-                  src={props.vector}
-                  alt={`${props.vector} artwork`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex flex-1 items-center justify-center px-3 py-4 text-center text-sm text-white sm:px-4 sm:py-6 sm:text-base">
-                {/* {props.vector} */}
-              </div>
-            </div>
-          </article>
-        </div>
+        </motion.article>
       </div>
-    </div>
+    </motion.div>
   );
 }

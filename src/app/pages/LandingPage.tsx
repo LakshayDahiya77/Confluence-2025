@@ -6,9 +6,19 @@ import {
   useState,
   useRef,
   useCallback,
+  useImperativeHandle,
+  forwardRef,
 } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Galaxy from "../components/Galaxy";
+import dynamic from "next/dynamic";
+
+// Dynamically import the Galaxy/WebGL component on the client only.
+// "ogl" and WebGL-related code can throw during server-side evaluation or
+// Fast Refresh; dynamic import with ssr: false ensures the module is only
+// required in the browser runtime.
+const Galaxy = dynamic(() => import("../components/Galaxy"), {
+  ssr: false,
+});
 
 // ===== GALAXY ANIMATION CONFIGURATION =====
 // Adjust these values to customize the galaxy background animation
@@ -188,396 +198,376 @@ anticipate / backOut / backInOut – add a bounce; avoid if you don’t want it.
   // "-3%"    - move 3% up
 };
 
-export default function LandingPage() {
-  const [videoComplete, setVideoComplete] = useState(false);
-  const [showLogo, setShowLogo] = useState(false);
-  const [logoShrinking, setLogoShrinking] = useState(false);
-  const [showStars, setShowStars] = useState(false);
-  const [showBackground, setShowBackground] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [videoError, setVideoError] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [introComplete, setIntroComplete] = useState(false); // True when both video and audio complete
-  const [playbackBlocked, setPlaybackBlocked] = useState(false);
+const LandingPage = forwardRef<{ triggerPlayback: () => void }>(
+  (props, ref) => {
+    const [videoComplete, setVideoComplete] = useState(false);
+    const [showLogo, setShowLogo] = useState(false);
+    const [logoShrinking, setLogoShrinking] = useState(false);
+    const [showStars, setShowStars] = useState(false);
+    const [showBackground, setShowBackground] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const [videoError, setVideoError] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
+    const [introComplete, setIntroComplete] = useState(false); // True when both video and audio complete
 
-  const handleVideoTransition = useCallback(() => {
-    // Sequence 1: Show stars immediately when video fades
-    setShowStars(true);
-   
-    // Sequence 2: Show background after delay
-    setTimeout(() => {
-      setShowBackground(true);
-    }, INTRO_ANIMATION_CONFIG.backgroundDelay);
+    const handleVideoTransition = useCallback(() => {
+      // Sequence 1: Show stars immediately when video fades
+      setShowStars(true);
 
-    // Sequence 3: Show logo at full size
-    setTimeout(() => {
-      setShowLogo(true);
-    }, INTRO_ANIMATION_CONFIG.backgroundDelay);
+      // Sequence 2: Show background after delay
+      setTimeout(() => {
+        setShowBackground(true);
+      }, INTRO_ANIMATION_CONFIG.backgroundDelay);
 
-    // Sequence 4: Start shrinking logo after hold duration
-    setTimeout(() => {
-      setLogoShrinking(true);
-    }, INTRO_ANIMATION_CONFIG.backgroundDelay + INTRO_ANIMATION_CONFIG.logoHoldDuration);
-  }, []);
+      // Sequence 3: Show logo at full size
+      setTimeout(() => {
+        setShowLogo(true);
+      }, INTRO_ANIMATION_CONFIG.backgroundDelay);
 
-  const handleVideoEnd = useCallback(() => {
-    console.log(
-      "Video ended (13s), starting animation, audio continues for 20 more seconds"
+      // Sequence 4: Start shrinking logo after hold duration
+      setTimeout(() => {
+        setLogoShrinking(true);
+
+        // Dispatch event to show navbar when logo starts shrinking
+        setTimeout(() => {
+          window.dispatchEvent(new Event("introComplete"));
+        }, 500); // Small delay after logo starts shrinking
+      }, INTRO_ANIMATION_CONFIG.backgroundDelay + INTRO_ANIMATION_CONFIG.logoHoldDuration);
+    }, []);
+
+    const handleVideoEnd = useCallback(() => {
+      console.log(
+        "Video ended (13s), starting animation, audio continues for 20 more seconds"
+      );
+      setVideoComplete(true);
+
+      // Start animation sequence immediately when video ends
+      handleVideoTransition();
+    }, [handleVideoTransition]);
+
+    const handleVideoComplete = useCallback(() => {
+      console.log("Video playback timeout or error");
+      setVideoComplete(true);
+      handleVideoTransition();
+    }, [handleVideoTransition]);
+
+    const startPlayback = useCallback(
+      async (initiatedByUser = false) => {
+        if (!videoRef.current || !audioRef.current) return;
+
+        try {
+          setVideoError(false);
+
+          // Reset both to start
+          videoRef.current.currentTime = 0;
+          audioRef.current.currentTime = 0;
+
+          // Ensure video stays muted for autoplay compliance
+          videoRef.current.muted = true;
+
+          const videoPlayPromise = videoRef.current.play();
+          const audioPlayPromise = audioRef.current.play();
+
+          await Promise.all([videoPlayPromise, audioPlayPromise]);
+          console.log("Video and audio both playing");
+        } catch (error) {
+          console.error("Playback failed:", error);
+          setVideoError(true);
+          handleVideoComplete();
+        }
+      },
+      [handleVideoComplete]
     );
-    setVideoComplete(true);
 
-    // Start animation sequence immediately when video ends
-    handleVideoTransition();
-  }, [handleVideoTransition]);
+    // Expose triggerPlayback method for parent component
+    useImperativeHandle(
+      ref,
+      () => ({
+        triggerPlayback: () => {
+          void startPlayback(true);
+        },
+      }),
+      [startPlayback]
+    );
 
-  const handleVideoComplete = useCallback(() => {
-    console.log("Video playback timeout or error");
-    setVideoComplete(true);
-    handleVideoTransition();
-  }, [handleVideoTransition]);
-
-  const startPlayback = useCallback(
-    async (initiatedByUser = false) => {
-      if (!videoRef.current || !audioRef.current) return;
-
-      try {
-        setPlaybackBlocked(false);
-        setVideoError(false);
-
-        // Reset both to start
-        videoRef.current.currentTime = 0;
-        audioRef.current.currentTime = 0;
-
-        // Ensure video stays muted for autoplay compliance
-        videoRef.current.muted = true;
-
-        const videoPlayPromise = videoRef.current.play();
-        const audioPlayPromise = audioRef.current.play();
-
-        await Promise.all([videoPlayPromise, audioPlayPromise]);
-        console.log("Video and audio both playing");
-      } catch (error) {
-        console.error("Playback failed:", error);
-
-        if (
-          error instanceof DOMException &&
-          (error.name === "NotAllowedError" || error.name === "SecurityError")
-        ) {
-          setPlaybackBlocked(true);
-          if (!initiatedByUser) {
-            console.warn(
-              "Autoplay blocked by browser; waiting for user interaction."
-            );
-          }
-          return;
-        }
-
-        setVideoError(true);
-        handleVideoComplete();
-      }
-    },
-    [handleVideoComplete]
-  );
-
-  // Detect mobile viewport
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  // Attempt autoplay on mount
-  useEffect(() => {
-    void startPlayback();
-  }, [startPlayback]);
-  // Force scroll to top on mount and prevent scroll restoration
-  useEffect(() => {
-    // Disable browser scroll restoration
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
-
-    // Force immediate scroll to top
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-  }, []);
-
-  // Generate fade gradient based on configuration
-  const getFadeGradient = () => {
-    if (!GALAXY_CONFIG.fade.enabled) return "none";
-
-    const startPos = GALAXY_CONFIG.fade.startPosition;
-    const type = GALAXY_CONFIG.fade.type;
-
-    // Different gradient types for fade effect
-    const gradients = {
-      linear: `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - ${startPos}), rgba(0,0,0,0) 100%)`,
-      easeIn: `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - ${startPos}), rgba(0,0,0,0.5) calc(100% - calc(${startPos} / 2)), rgba(0,0,0,0) 100%)`,
-      easeOut: `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - ${startPos}), rgba(0,0,0,0.3) calc(100% - calc(${startPos} * 0.7)), rgba(0,0,0,0) 100%)`,
-      smooth: `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - ${startPos}), rgba(0,0,0,0.8) calc(100% - calc(${startPos} * 0.8)), rgba(0,0,0,0.5) calc(100% - calc(${startPos} * 0.5)), rgba(0,0,0,0.2) calc(100% - calc(${startPos} * 0.3)), rgba(0,0,0,0) 100%)`,
-    };
-
-    return gradients[type] || gradients.easeOut;
-  };
-
-  const baseBackgroundStyle: CSSProperties = {
-    position: LAYOUT_CONFIG.animationPosition,
-    top: 0,
-    left: 0,
-    height: LAYOUT_CONFIG.animationHeight,
-    width: LAYOUT_CONFIG.animationWidth,
-    overflow: "hidden",
-    ...(GALAXY_CONFIG.fade.enabled && {
-      maskImage: getFadeGradient(),
-      WebkitMaskImage: getFadeGradient(),
-    }),
-  };
-
-  // Lock scroll until logo finishes shrinking
-  useEffect(() => {
-    if (!videoComplete || !logoShrinking) {
-      // Prevent scrolling
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-
-      // Continuously reset scroll position to top during animation
-      const scrollInterval = setInterval(() => {
-        if (window.scrollY !== 0) {
-          window.scrollTo(0, 0);
-        }
-      }, 16); // Check every frame (~60fps)
-
-      return () => {
-        clearInterval(scrollInterval);
+    // Detect mobile viewport
+    useEffect(() => {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768);
       };
-    } else {
-      // Re-enable scrolling when logo starts shrinking
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    }
-  }, [videoComplete, logoShrinking]);
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
-  // Fallback timeout in case video doesn't load/play
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!videoComplete) {
-        handleVideoComplete();
+    // Force scroll to top on mount and prevent scroll restoration
+    useEffect(() => {
+      // Disable browser scroll restoration
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
       }
-    }, INTRO_ANIMATION_CONFIG.videoTimeout);
 
-    return () => clearTimeout(timeout);
-  }, [videoComplete, handleVideoComplete]);
+      // Force immediate scroll to top
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, []);
 
-  return (
-    <div
-      className="relative w-full max-w-[100vw] overflow-x-hidden overflow-y-hidden"
-      style={{ minHeight: LAYOUT_CONFIG.sectionHeight }}
-    >
-      {/* Fixed galaxy stars animation with custom fade-in */}
-      <AnimatePresence>
-        {showStars && (
-          <motion.div
-            className="fixed top-0 left-0 z-0 pointer-events-none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: INTRO_ANIMATION_CONFIG.starsFadeDuration / 1000,
-              ease: "easeOut",
-            }}
-            style={baseBackgroundStyle}
-          >
-            <Galaxy
-              starSpeed={GALAXY_CONFIG.starSpeed}
-              density={GALAXY_CONFIG.density}
-              hueShift={GALAXY_CONFIG.hueShift}
-              speed={GALAXY_CONFIG.speed}
-              glowIntensity={GALAXY_CONFIG.glowIntensity}
-              saturation={GALAXY_CONFIG.saturation}
-              mouseRepulsion={GALAXY_CONFIG.mouseRepulsion}
-              mouseInteraction={GALAXY_CONFIG.mouseInteraction}
-              twinkleIntensity={GALAXY_CONFIG.twinkleIntensity}
-              rotationSpeed={GALAXY_CONFIG.rotationSpeed}
-              repulsionStrength={GALAXY_CONFIG.repulsionStrength}
-              autoCenterRepulsion={GALAXY_CONFIG.autoCenterRepulsion}
-              transparent={GALAXY_CONFIG.transparent}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+    // Generate fade gradient based on configuration
+    const getFadeGradient = () => {
+      if (!GALAXY_CONFIG.fade.enabled) return "none";
 
-      {/* Background image layer (appears after stars) */}
-      <AnimatePresence>
-        {showBackground &&
-          LAYOUT_CONFIG.backgroundImage.enabled &&
-          LAYOUT_CONFIG.backgroundImage.url && (
-            <motion.div
-              className="fixed top-0 left-0 w-full h-screen z-0 pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: LAYOUT_CONFIG.backgroundImage.opacity }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: INTRO_ANIMATION_CONFIG.backgroundFadeDuration / 1000,
-                ease: "easeOut",
-              }}
-              style={{
-                backgroundImage: `url("${LAYOUT_CONFIG.backgroundImage.url}")`,
-                backgroundSize: LAYOUT_CONFIG.backgroundImage.size,
-                backgroundPosition: LAYOUT_CONFIG.backgroundImage.position,
-                backgroundRepeat: "no-repeat",
-              }}
-            />
-          )}
-      </AnimatePresence>
+      const startPos = GALAXY_CONFIG.fade.startPosition;
+      const type = GALAXY_CONFIG.fade.type;
 
-      {/* Container for centering logo */}
+      // Different gradient types for fade effect
+      const gradients = {
+        linear: `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - ${startPos}), rgba(0,0,0,0) 100%)`,
+        easeIn: `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - ${startPos}), rgba(0,0,0,0.5) calc(100% - calc(${startPos} / 2)), rgba(0,0,0,0) 100%)`,
+        easeOut: `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - ${startPos}), rgba(0,0,0,0.3) calc(100% - calc(${startPos} * 0.7)), rgba(0,0,0,0) 100%)`,
+        smooth: `linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) calc(100% - ${startPos}), rgba(0,0,0,0.8) calc(100% - calc(${startPos} * 0.8)), rgba(0,0,0,0.5) calc(100% - calc(${startPos} * 0.5)), rgba(0,0,0,0.2) calc(100% - calc(${startPos} * 0.3)), rgba(0,0,0,0) 100%)`,
+      };
+
+      return gradients[type] || gradients.easeOut;
+    };
+
+    const baseBackgroundStyle: CSSProperties = {
+      position: LAYOUT_CONFIG.animationPosition,
+      top: 0,
+      left: 0,
+      height: LAYOUT_CONFIG.animationHeight,
+      width: LAYOUT_CONFIG.animationWidth,
+      overflow: "hidden",
+      ...(GALAXY_CONFIG.fade.enabled && {
+        maskImage: getFadeGradient(),
+        WebkitMaskImage: getFadeGradient(),
+      }),
+    };
+
+    // Lock scroll until logo finishes shrinking
+    useEffect(() => {
+      if (!videoComplete || !logoShrinking) {
+        // Prevent scrolling
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+
+        // Continuously reset scroll position to top during animation
+        const scrollInterval = setInterval(() => {
+          if (window.scrollY !== 0) {
+            window.scrollTo(0, 0);
+          }
+        }, 16); // Check every frame (~60fps)
+
+        return () => {
+          clearInterval(scrollInterval);
+        };
+      } else {
+        // Re-enable scrolling when logo starts shrinking
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+      }
+    }, [videoComplete, logoShrinking]);
+
+    // Fallback timeout in case video doesn't load/play
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        if (!videoComplete) {
+          handleVideoComplete();
+        }
+      }, INTRO_ANIMATION_CONFIG.videoTimeout);
+
+      return () => clearTimeout(timeout);
+    }, [videoComplete, handleVideoComplete]);
+
+    return (
       <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        style={{
-          transform: `translateY(${INTRO_ANIMATION_CONFIG.verticalOffset})`,
-        }}
+        className="relative w-full max-w-[100vw] overflow-x-hidden overflow-y-hidden"
+        style={{ minHeight: LAYOUT_CONFIG.sectionHeight }}
       >
+        {/* Fixed galaxy stars animation with custom fade-in */}
         <AnimatePresence>
-          {showLogo && (
+          {showStars && (
             <motion.div
-              className="absolute z-10 flex items-center justify-center"
-              style={{
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
+              className="fixed top-0 left-0 z-0 pointer-events-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{
+                duration: INTRO_ANIMATION_CONFIG.starsFadeDuration / 1000,
+                ease: "easeOut",
+              }}
+              style={baseBackgroundStyle}
             >
-              <motion.div
-                className="relative flex items-center justify-center"
-                style={{ maxWidth: "100%" }}
-                initial={{
-                  width: INTRO_ANIMATION_CONFIG.logoInitialWidth,
-                  scale: INTRO_ANIMATION_CONFIG.scaleAnimation.enabled
-                    ? INTRO_ANIMATION_CONFIG.scaleAnimation.initial
-                    : 1,
-                  rotate: INTRO_ANIMATION_CONFIG.rotationAnimation.enabled
-                    ? 0
-                    : 0,
-                }}
-                animate={{
-                  width: logoShrinking
-                    ? isMobile
-                      ? INTRO_ANIMATION_CONFIG.logoFinalWidthMobile
-                      : INTRO_ANIMATION_CONFIG.logoFinalWidthDesktop
-                    : INTRO_ANIMATION_CONFIG.logoInitialWidth,
-                  scale:
-                    logoShrinking &&
-                    INTRO_ANIMATION_CONFIG.scaleAnimation.enabled
-                      ? INTRO_ANIMATION_CONFIG.scaleAnimation.final
-                      : INTRO_ANIMATION_CONFIG.scaleAnimation.initial,
-                  rotate:
-                    logoShrinking &&
-                    INTRO_ANIMATION_CONFIG.rotationAnimation.enabled
-                      ? INTRO_ANIMATION_CONFIG.rotationAnimation.degrees
-                      : 0,
-                }}
-                transition={{
-                  duration: logoShrinking
-                    ? INTRO_ANIMATION_CONFIG.logoShrinkDuration / 1000
-                    : 0,
-                  ease: INTRO_ANIMATION_CONFIG.shrinkEasing,
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/Conflu_Spinning_wheel_logo.svg"
-                  alt="Confluence 2025"
-                  className="max-w-full h-auto object-contain"
-                  style={{ display: "block" }}
-                />
-              </motion.div>
+              <Galaxy
+                starSpeed={GALAXY_CONFIG.starSpeed}
+                density={GALAXY_CONFIG.density}
+                hueShift={GALAXY_CONFIG.hueShift}
+                speed={GALAXY_CONFIG.speed}
+                glowIntensity={GALAXY_CONFIG.glowIntensity}
+                saturation={GALAXY_CONFIG.saturation}
+                mouseRepulsion={GALAXY_CONFIG.mouseRepulsion}
+                mouseInteraction={GALAXY_CONFIG.mouseInteraction}
+                twinkleIntensity={GALAXY_CONFIG.twinkleIntensity}
+                rotationSpeed={GALAXY_CONFIG.rotationSpeed}
+                repulsionStrength={GALAXY_CONFIG.repulsionStrength}
+                autoCenterRepulsion={GALAXY_CONFIG.autoCenterRepulsion}
+                transparent={GALAXY_CONFIG.transparent}
+              />
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
 
-      {/* Hidden audio element that plays simultaneously with video and continues after */}
-      <audio
-        ref={audioRef}
-        src="/Full_Audio.m4a"
-        preload="auto"
-        onEnded={() => {
-          console.log("Audio completed (33s)");
-          setIntroComplete(true);
-        }}
-        onError={(e) => {
-          console.error("Audio loading failed:", e);
-          setIntroComplete(true);
-        }}
-      />
-
-      {!videoComplete && (
-        <div className="fixed inset-0 z-50 bg-black">
-          <video
-            ref={videoRef}
-            className="h-full w-full object-cover"
-            src="/Video_No_Audio.mp4"
-            muted
-            playsInline
-            preload="auto"
-            webkit-playsinline="true"
-            x5-playsinline="true"
-            onEnded={handleVideoEnd}
-            onError={(e) => {
-              console.error("Video error event:", e);
-              setVideoError(true);
-              handleVideoComplete();
-            }}
-            onLoadedData={() => {
-              console.log("Video loaded successfully");
-            }}
-            onCanPlay={() => {
-              console.log("Video can play");
-            }}
-          >
-            <source src="/Video_No_Audio.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          {playbackBlocked && (
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6 bg-black px-6 text-center sm:gap-8">
-              <div className="flex flex-col gap-4 sm:gap-5">
-                <h2 className="text-xl font-semibold text-white sm:text-2xl md:text-3xl">
-                  Tap to start the Confluence experience
-                </h2>
-                <p className="mx-auto max-w-lg text-sm leading-relaxed text-white/80 sm:text-base md:max-w-xl md:text-lg">
-                  Browsers block autoplay with sound until you interact. Tap the
-                  button below to begin the intro with audio.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  void startPlayback(true);
+        {/* Background image layer (appears after stars) */}
+        <AnimatePresence>
+          {showBackground &&
+            LAYOUT_CONFIG.backgroundImage.enabled &&
+            LAYOUT_CONFIG.backgroundImage.url && (
+              <motion.div
+                className="fixed top-0 left-0 w-full h-screen z-0 pointer-events-none"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: LAYOUT_CONFIG.backgroundImage.opacity }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  duration:
+                    INTRO_ANIMATION_CONFIG.backgroundFadeDuration / 1000,
+                  ease: "easeOut",
                 }}
-                className="rounded-full bg-white px-8 py-3 text-base font-semibold text-black shadow-lg transition-all hover:scale-105 hover:bg-gray-100 active:scale-95 sm:px-10 sm:py-4 sm:text-lg"
-              >
-                Play Intro
-              </button>
-            </div>
-          )}
+                style={{
+                  backgroundImage: `url("${LAYOUT_CONFIG.backgroundImage.url}")`,
+                  backgroundSize: LAYOUT_CONFIG.backgroundImage.size,
+                  backgroundPosition: LAYOUT_CONFIG.backgroundImage.position,
+                  backgroundRepeat: "no-repeat",
+                }}
+              />
+            )}
+        </AnimatePresence>
 
-          {videoError && (
-            <div className="absolute inset-0 flex items-center justify-center text-white text-sm">
-              Loading...
-            </div>
-          )}
+        {/* Container for centering logo */}
+        <div
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{
+            transform: `translateY(${INTRO_ANIMATION_CONFIG.verticalOffset})`,
+          }}
+        >
+          <AnimatePresence>
+            {showLogo && (
+              <motion.div
+                className="absolute z-10 flex items-center justify-center"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <motion.div
+                  className="relative flex items-center justify-center"
+                  style={{ maxWidth: "100%" }}
+                  initial={{
+                    width: INTRO_ANIMATION_CONFIG.logoInitialWidth,
+                    scale: INTRO_ANIMATION_CONFIG.scaleAnimation.enabled
+                      ? INTRO_ANIMATION_CONFIG.scaleAnimation.initial
+                      : 1,
+                    rotate: INTRO_ANIMATION_CONFIG.rotationAnimation.enabled
+                      ? 0
+                      : 0,
+                  }}
+                  animate={{
+                    width: logoShrinking
+                      ? isMobile
+                        ? INTRO_ANIMATION_CONFIG.logoFinalWidthMobile
+                        : INTRO_ANIMATION_CONFIG.logoFinalWidthDesktop
+                      : INTRO_ANIMATION_CONFIG.logoInitialWidth,
+                    scale:
+                      logoShrinking &&
+                      INTRO_ANIMATION_CONFIG.scaleAnimation.enabled
+                        ? INTRO_ANIMATION_CONFIG.scaleAnimation.final
+                        : INTRO_ANIMATION_CONFIG.scaleAnimation.initial,
+                    rotate:
+                      logoShrinking &&
+                      INTRO_ANIMATION_CONFIG.rotationAnimation.enabled
+                        ? INTRO_ANIMATION_CONFIG.rotationAnimation.degrees
+                        : 0,
+                  }}
+                  transition={{
+                    duration: logoShrinking
+                      ? INTRO_ANIMATION_CONFIG.logoShrinkDuration / 1000
+                      : 0,
+                    ease: INTRO_ANIMATION_CONFIG.shrinkEasing,
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/Conflu_Spinning_wheel_logo.svg"
+                    alt="Confluence 2025"
+                    className="max-w-full h-auto object-contain"
+                    style={{ display: "block" }}
+                  />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      )}
-    </div>
-  );
-}
+
+        {/* Hidden audio element that plays simultaneously with video and continues after */}
+        <audio
+          ref={audioRef}
+          src="/Full_Audio.m4a"
+          preload="auto"
+          onEnded={() => {
+            console.log("Audio completed (33s)");
+            setIntroComplete(true);
+          }}
+          onError={(e) => {
+            console.error("Audio loading failed:", e);
+            setIntroComplete(true);
+          }}
+        />
+
+        {!videoComplete && (
+          <div className="fixed inset-0 z-50 bg-black">
+            <video
+              ref={videoRef}
+              className="h-full w-full object-cover"
+              src="/Video_No_Audio.mp4"
+              muted
+              playsInline
+              preload="auto"
+              webkit-playsinline="true"
+              x5-playsinline="true"
+              onEnded={handleVideoEnd}
+              onError={(e) => {
+                console.error("Video error event:", e);
+                setVideoError(true);
+                handleVideoComplete();
+              }}
+              onLoadedData={() => {
+                console.log("Video loaded successfully");
+              }}
+              onCanPlay={() => {
+                console.log("Video can play");
+              }}
+            >
+              <source src="/Video_No_Audio.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {videoError && (
+              <div className="absolute inset-0 flex items-center justify-center text-white text-sm">
+                Loading...
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
+
+LandingPage.displayName = "LandingPage";
+
+export default LandingPage;

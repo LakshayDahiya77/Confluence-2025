@@ -2,39 +2,49 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { glassPanel } from "./glassTokens";
+import { glassPanel, glassPaginationButton } from "./glassTokens";
+import { galleryData } from "../data/galleryData";
 
 interface PreloaderProps {
   onComplete: () => void;
+  onEnter?: () => void; // Callback when user clicks Enter button
 }
 
 /**
  * Preloader component that loads all critical assets before showing the site
  * Shows a loading bar with progress percentage
+ * After loading, shows an "Enter" button to start the experience
  */
-export default function Preloader({ onComplete }: PreloaderProps) {
+export default function Preloader({ onComplete, onEnter }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [showEnterButton, setShowEnterButton] = useState(false);
 
   useEffect(() => {
+    // Dynamically extract all gallery images
+    const galleryImages = galleryData.flatMap((item) => [
+      { url: item.image, type: "image" as const },
+      { url: item.vector, type: "image" as const },
+    ]);
+
     // List of all assets to preload
     const assetsToLoad = [
       // Background images
-      { url: "/bg-wallpaper.jpg", type: "image" },
-      { url: "/bg-wallpaper-vertical.jpg", type: "image" },
+      { url: "/bg-wallpaper.jpg", type: "image" as const },
+      { url: "/bg-wallpaper-vertical.jpg", type: "image" as const },
 
       // Logos
-      { url: "/conflu25White.png", type: "image" }, // For navbar
-      { url: "/Conflu_Spinning_wheel_logo.svg", type: "image" }, // For landing page
+      { url: "/conflu25White.png", type: "image" as const }, // For navbar
+      { url: "/Conflu_Spinning_wheel_logo.svg", type: "image" as const }, // For landing page
 
       // Intro video (no audio)
-      { url: "/Video_No_Audio.mp4", type: "video" },
+      { url: "/Video_No_Audio.mp4", type: "video" as const },
 
       // Full audio track
-      { url: "/Full_Audio.m4a", type: "audio" },
+      { url: "/Full_Audio.m4a", type: "audio" as const },
 
-      // Optional: Add other critical assets
-      // { url: "/cosmic-carnival.svg", type: "image" },
+      // Gallery images (dynamically loaded)
+      ...galleryImages,
     ];
 
     let loadedCount = 0;
@@ -48,8 +58,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       if (loadedCount === totalAssets) {
         // Small delay to show 100% completion
         setTimeout(() => {
-          setIsComplete(true);
-          setTimeout(onComplete, 500); // Exit animation time
+          setShowEnterButton(true); // Show Enter button instead of auto-closing
         }, 300);
       }
     };
@@ -125,6 +134,16 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     loadAllAssets();
   }, [onComplete]);
 
+  const handleEnterClick = () => {
+    setIsComplete(true);
+    setTimeout(() => {
+      onComplete();
+      if (onEnter) {
+        onEnter(); // Trigger intro playback
+      }
+    }, 500); // Exit animation time
+  };
+
   return (
     <AnimatePresence>
       {!isComplete && (
@@ -158,8 +177,18 @@ export default function Preloader({ onComplete }: PreloaderProps) {
               className="text-center"
             >
               <h2 className="mb-2 text-lg font-semibold text-white sm:text-xl">
-                Loading Experience
+                {showEnterButton
+                  ? "Enter the Cosmic Carnival"
+                  : "Loading Experience"}
               </h2>
+              {showEnterButton && (
+                <motion.p
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-sm text-white/70 sm:text-base"
+                ></motion.p>
+              )}
             </motion.div>
 
             {/* Progress bar container */}
@@ -169,66 +198,85 @@ export default function Preloader({ onComplete }: PreloaderProps) {
               transition={{ delay: 0.5, duration: 0.4 }}
               className="w-full max-w-md"
             >
-              {/* Progress bar background */}
-              <div
-                className={`relative h-2.5 overflow-hidden rounded-full ${glassPanel}`}
-              >
-                {/* Progress fill */}
-                <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="h-full rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500"
-                >
-                  {/* Animated shimmer effect */}
-                  <motion.div
-                    animate={{
-                      x: ["-100%", "100%"],
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                  />
-                </motion.div>
-              </div>
+              {!showEnterButton ? (
+                <>
+                  {/* Progress bar background */}
+                  <div
+                    className={`relative h-2.5 overflow-hidden rounded-full ${glassPanel}`}
+                  >
+                    {/* Progress fill */}
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      animate={{ width: `${progress}%` }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="h-full rounded-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500"
+                    >
+                      {/* Animated shimmer effect */}
+                      <motion.div
+                        animate={{
+                          x: ["-100%", "100%"],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      />
+                    </motion.div>
+                  </div>
 
-              {/* Percentage text */}
+                  {/* Percentage text */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.7, duration: 0.3 }}
+                    className="mt-3 text-center text-sm font-medium text-white/80"
+                  >
+                    {progress}%
+                  </motion.div>
+                </>
+              ) : (
+                /* Enter Button - Shows after loading completes */
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.25 }}
+                  onClick={handleEnterClick}
+                  className={`w-full max-w-xs px-8 py-4 rounded-full text-lg font-semibold text-white sm:text-xl ${glassPaginationButton}`}
+                >
+                  Enter
+                </motion.button>
+              )}
+            </motion.div>
+
+            {/* Animated dots - Only show during loading */}
+            {!showEnterButton && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.3 }}
-                className="mt-3 text-center text-sm font-medium text-white/80"
+                transition={{ delay: 0.8, duration: 0.3 }}
+                className="flex gap-2"
               >
-                {progress}%
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.4, 1, 0.4],
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                    }}
+                    className="h-2 w-2 rounded-full bg-sky-400"
+                  />
+                ))}
               </motion.div>
-            </motion.div>
-
-            {/* Animated dots */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.3 }}
-              className="flex gap-2"
-            >
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [0.4, 1, 0.4],
-                  }}
-                  transition={{
-                    duration: 1.2,
-                    repeat: Infinity,
-                    delay: i * 0.2,
-                  }}
-                  className="h-2 w-2 rounded-full bg-sky-400"
-                />
-              ))}
-            </motion.div>
+            )}
           </div>
         </motion.div>
       )}

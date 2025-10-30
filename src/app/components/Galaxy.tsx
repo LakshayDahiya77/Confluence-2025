@@ -297,9 +297,26 @@ export default function Galaxy({
       smoothMouseActive.current +=
         (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
 
-      program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
-      program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
-      program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
+      const uMouseUniform = program.uniforms.uMouse;
+      if (uMouseUniform && uMouseUniform.value) {
+        if (uMouseUniform.value instanceof Float32Array) {
+          uMouseUniform.value[0] = smoothMousePos.current.x;
+          uMouseUniform.value[1] = smoothMousePos.current.y;
+        } else {
+          // If the uniform's value isn't already a Float32Array, replace it with one.
+          uMouseUniform.value = new Float32Array([
+            smoothMousePos.current.x,
+            smoothMousePos.current.y,
+          ]) as any;
+        }
+      }
+
+      if (
+        program.uniforms.uMouseActiveFactor &&
+        "value" in program.uniforms.uMouseActiveFactor
+      ) {
+        program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
+      }
 
       renderer.render({ scene: mesh });
     }

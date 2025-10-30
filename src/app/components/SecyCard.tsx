@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { cardOuterRadiusClass, cardSurfaceClasses } from "./cardTokens";
 
 interface SecyCardProps {
@@ -7,11 +8,28 @@ interface SecyCardProps {
   role: string;
   desc: string;
   img: string;
+  index?: number;
 }
 
-export default function SecyCard({ name, role, desc, img }: SecyCardProps) {
+export default function SecyCard({
+  name,
+  role,
+  desc,
+  img,
+  index = 0,
+}: SecyCardProps) {
   return (
-    <div className="group relative h-72 w-full cursor-pointer [perspective:1000px] sm:h-80 sm:w-64">
+    <motion.div
+      className="group relative h-72 w-full cursor-pointer [perspective:1000px] sm:h-80 sm:w-64"
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.08,
+        ease: [0.22, 0.61, 0.36, 1],
+      }}
+    >
       <div className="relative w-full h-full transition-transform duration-1500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
         {/* Front */}
         <div
@@ -29,6 +47,6 @@ export default function SecyCard({ name, role, desc, img }: SecyCardProps) {
           <p className="text-xs opacity-70 mt-2 sm:text-sm">{desc}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

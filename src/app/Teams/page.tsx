@@ -31,54 +31,52 @@ const teams = {
       desc: "Grades every frame for that cosmic glow.",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761735860/IMG_9545_-_Harshavardhan_Raju_lgl1at.jpg",
     },
-    
   ],
-  "MAD": [
-   {
+  MAD: [
+    {
       name: "Rishabh Jain",
       role: "Secretary",
       desc: "Managing and directing club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761738146/Snapchat-532846077_-_RISHABH_JAIN_h9e1xd.jpg",
     },
-   {
+    {
       name: "Shambhavi Srivastava",
       role: "Secretary",
       desc: "Managing and directing club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761738146/IMG_20251018_085927_-_Shambhavi_Srivastava_rbh7tt.jpg",
     },
-   {
+    {
       name: "Nitish Dhaka",
       role: "Secretary",
       desc: "Managing and directing club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761738146/DSC_0837_1_-_Nitish_Kumar_dafria.jpg",
     },
-   {
+    {
       name: "Lav dewangan",
       role: "Secretary",
       desc: "Managing and directing club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761738147/Lav_Dewangan_12216074_MAD_-_Lav_Dewangan_kyrfgm.png",
     },
-   {
+    {
       name: "Rishu Ranjan",
       role: "Secretary",
       desc: "Managing and directing club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761738154/DSC_6634_2_-_Rishu_Ranjan_wat5ps.jpg",
     },
-   {
+    {
       name: "Satyam Thakur",
       role: "Secretary",
       desc: "Managing and directing club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740744/IMG_20251018_150229_-_Satyam_Thakur_velip7.jpg",
     },
-   {
+    {
       name: "Nikhil Agrawal",
       role: "Secretary",
       desc: "Managing and directing club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740744/NIKHIL_12212089_MAD_-_NIKHIL_AGRAWAL_lf9j9p.jpg",
     },
-    
   ],
-  "AVA": [
+  AVA: [
     {
       name: "Saloni",
       role: "Secretary",
@@ -103,46 +101,44 @@ const teams = {
       desc: "Audio and Visual Aid Club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739004/IMG-20250826-WA0001_1_-_Kapil_Phogat_ppqx6q.jpg",
     },
-    
   ],
-  "Colours": [
+  Colours: [
     {
       name: "Prachi Gupta",
       role: "Secretary",
       desc: "Colours",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739353/IMG_20250503_164343_Original_-_Prachi_Gupta_tdmgok.jpg",
     },
-   
+
     {
       name: "Rhythm Garg",
       role: "Secretary",
       desc: "Colours",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739354/Screenshot_20251016_062920_-_Rhythm_garg_n5lhmv.jpg",
     },
-   
+
     {
       name: "Ardhansu Das",
       role: "Secretary",
       desc: "Colours",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739351/IMG_9841_-_Ardhansu_Das_rai8yf.jpg",
     },
-   
   ],
-  "ELAD": [
+  ELAD: [
     {
       name: "Devesh Tripathi",
       role: "Secretary",
       desc: "ELAD",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739649/IMG_3267_-_DEVESH_TRIPATHI_vrv6bk.jpg",
     },
-   
+
     {
       name: "Shreeyanshu Swain",
       role: "Secretary",
       desc: "ELAD",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739642/IMG_3921_1_2_-_Shreeyanshu_Swain_cv8fgw.jpg",
     },
-   
+
     {
       name: "Shreya Sinha",
       role: "Secretary",
@@ -175,7 +171,6 @@ const teams = {
       desc: "Fine arts and modelling",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761739842/IMG-20251005-WA0001_-_Jatin_Garg_skurwp.jpg",
     },
-  
   ],
   "Hiking and Trekking club": [
     {
@@ -197,7 +192,7 @@ const teams = {
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740432/IMG-20251018-WA0007_-_KUNAL_BARTHWAL_thr95k.jpg",
     },
   ],
-  "HLAD": [
+  HLAD: [
     {
       name: "Pranay Joshi",
       role: "Secretary",
@@ -210,7 +205,7 @@ const teams = {
       desc: "HLAD",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740168/Screenshot_20250708_053838_Gallery_-_Vivek_Pal_kfe0cl.jpg",
     },
-    
+
     {
       name: "Shubham Keshri",
       role: "Secretary",
@@ -231,7 +226,7 @@ const teams = {
       desc: "PG Club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740901/AAKASH_-_AAKASH_ge4o3g.jpg",
     },
-   
+
     {
       name: "Bipul Raj",
       role: "Secretary",
@@ -244,9 +239,8 @@ const teams = {
       desc: "PG Club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761741240/Screenshot_20251022_162954_Instagram_-_Amit_Panwar_kaw95g.jpg",
     },
-    
   ],
-  "MCC": [
+  MCC: [
     {
       name: "Divyansh Pankholi",
       role: "Secretary",
@@ -265,9 +259,8 @@ const teams = {
       desc: "Multi Cultural Club",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761740887/20250822_183823_-_SARTHAK_VATSA_pgzbym.jpg",
     },
-    
   ],
-  "Spicmacy": [
+  Spicmacy: [
     {
       name: "Pawan Gupta",
       role: "Secretary",
@@ -286,7 +279,6 @@ const teams = {
       desc: "Spicmacy",
       img: "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761741365/IMG-20251013-WA0030_1_-_Aryawart_Kathpal_cxpweu.jpg",
     },
-    
   ],
 };
 
@@ -342,6 +334,7 @@ export default function TeamSection() {
                 role={member.role}
                 desc={member.desc}
                 img={member.img}
+                index={typeof index === "number" ? index : 0}
               />
             )
           )}
