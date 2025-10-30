@@ -23,12 +23,10 @@ type Event = {
 
 const clubNames = [
   "All Clubs",
-  "Audio & Visual Aid",
+  "Audio and Visual Aid",
   "Fine Arts",
-  "MAD",
-  "Fine Arts & Modelling Club",
+  "Managing and Directing Club",
   "Colours",
-  "Literary Society",
   "Photography Club",
 ];
 
@@ -134,7 +132,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761597349/solo_Singing_sosemh.png",
     venue: "Jubilee Hall",
-    clubName: "Photography Club",
+    clubName: "Managing and Directing Club",
     description: "Live painting inspired by the universe",
   },
   {
@@ -174,7 +172,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717028/CROSSOVER_CARNIVAL_FINAL_3_wqkdhr.png",
     venue: "Juiblee HAll",
-    clubName: "Audio & Visual Aid",
+    clubName: "Audio and Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
@@ -182,7 +180,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717042/music_party_night_i8hlvn.png",
     venue: "",
-    clubName: "Audio & Visual Aid",
+    clubName: "Audio and Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
@@ -190,7 +188,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717126/HARLEM_SHAKE_jbpvgz.png",
     venue: "Online Event",
-    clubName: "Audio & Visual Aid",
+    clubName: "Audio and Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
@@ -198,7 +196,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717173/DUBSMASH_WITH_LOGOS_FINAL_io76eb.png",
     venue: "Online Event",
-    clubName: "Audio & Visual Aid",
+    clubName: "Audio and Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
@@ -206,7 +204,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761717548/BEATBOX_FINAL_2_w9a8to.png",
     venue: "Jubilee Hall",
-    clubName: "Audio & Visual Aid",
+    clubName: "Audio and Visual Aid",
     description: "Live painting inspired by the universe",
   },
   {
@@ -214,7 +212,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751202/11_ty4vxm.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -222,7 +220,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751287/5_lubdik.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -230,7 +228,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751425/2_onidbh.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -238,7 +236,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751481/7_qabu3y.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -246,7 +244,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751581/9_bvpyaw.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -254,7 +252,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761751880/4_qyldbq.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -262,7 +260,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752011/6_fkwtl4.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -270,7 +268,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752081/3_zwvlwm.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -278,7 +276,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752127/1_afzgxz.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -286,7 +284,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752140/SAVE_20251029_130908_ftn0bw.jpg",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -294,7 +292,7 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752163/15_zoi53b.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
   },
   {
@@ -302,8 +300,254 @@ const allEvents: Event[] = [
     image:
       "https://res.cloudinary.com/dyqkhzgv6/image/upload/v1761752175/Smile_gymi5y.png",
     venue: "ED Hall",
-    clubName: "Fine Arts & Modelling Club",
+    clubName: "Fine Arts",
     description: "Live painting inspired by the universe",
+  },
+  // Local posters from public/Events Posters - appended so we don't remove existing entries
+  // ELAD
+  {
+    eventName: "Brainstorm",
+    image: "/Events Posters/ELAD/BRAINSTORM.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Build A Story",
+    image: "/Events Posters/ELAD/BUILD A STORY.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Debate",
+    image: "/Events Posters/ELAD/DEBATE.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Fan Fic",
+    image: "/Events Posters/ELAD/FAN FIC.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Fandom",
+    image: "/Events Posters/ELAD/FANDOM.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Just A Minute",
+    image: "/Events Posters/ELAD/JUST A MINUTE.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Open Mic",
+    image: "/Events Posters/ELAD/OPEN MIC.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Prodigy",
+    image: "/Events Posters/ELAD/PRODIGY.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Spent",
+    image: "/Events Posters/ELAD/SPENT.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  {
+    eventName: "Voiceover Pete",
+    image: "/Events Posters/ELAD/VOICEOVER PETE.jpg",
+    clubName: "ELAD",
+    description: "ELAD club event",
+  },
+  // HLAD
+  {
+    eventName: "Aap Ki Sansad",
+    image: "/Events Posters/HLAD/AAP KI SANSAD.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Abhivyakti",
+    image: "/Events Posters/HLAD/ABHIVYAKTI.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Adhikari",
+    image: "/Events Posters/HLAD/ADHIKARI.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Axar",
+    image: "/Events Posters/HLAD/AXAR.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Bollywood Masti",
+    image: "/Events Posters/HLAD/BOLLYWOOD MASTI.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Chakravyuh",
+    image: "/Events Posters/HLAD/CHAKRAVUEH.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Creative Writing",
+    image: "/Events Posters/HLAD/CREATIVE WRITING.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Kavi Sammelan",
+    image: "/Events Posters/HLAD/KAVI SAMMELAN.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Know India Quiz",
+    image: "/Events Posters/HLAD/KNOW INIA QUIZ.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Lafz",
+    image: "/Events Posters/HLAD/LAFZ.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  {
+    eventName: "Patrakar Babu",
+    image: "/Events Posters/HLAD/PATRAKAR BABU.webp",
+    clubName: "HLAD",
+    description: "HLAD club event",
+  },
+  // Managing and Directing Club
+  {
+    eventName: "Ad Wars",
+    image: "/Events Posters/Managing and Directing Club/AD WARS.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Battle of Bands",
+    image: "/Events Posters/Managing and Directing Club/BATTLE OF BANDS.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Break A Leg",
+    image: "/Events Posters/Managing and Directing Club/BREAK A LEG.jpg",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Cineverse",
+    image: "/Events Posters/Managing and Directing Club/CINEVERSE.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Duet Singing",
+    image: "/Events Posters/Managing and Directing Club/DUET SINGING.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Ekanki",
+    image: "/Events Posters/Managing and Directing Club/EKANKI.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Folk Dance",
+    image: "/Events Posters/Managing and Directing Club/FOLK DANCE.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Fourth Wall",
+    image: "/Events Posters/Managing and Directing Club/FOURTH WALL.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Groove Armada",
+    image: "/Events Posters/Managing and Directing Club/GROOVE ARMADA.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Harmonically Mellow",
+    image:
+      "/Events Posters/Managing and Directing Club/HARMONICALLY mellow.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Libas",
+    image: "/Events Posters/Managing and Directing Club/LIBAS.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Mime",
+    image: "/Events Posters/Managing and Directing Club/MIME.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Moonlight Sonata",
+    image: "/Events Posters/Managing and Directing Club/MOONLIGHT SONATA.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Nukkad Natak",
+    image: "/Events Posters/Managing and Directing Club/NUKKAD NATAK.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Solo Singing",
+    image: "/Events Posters/Managing and Directing Club/SOLO SINGING.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Street Battle",
+    image: "/Events Posters/Managing and Directing Club/STREET BATTLE.jpg",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Two To Tango",
+    image: "/Events Posters/Managing and Directing Club/TWO TO TANGO.jpg",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  {
+    eventName: "Wardrobe Wars",
+    image: "/Events Posters/Managing and Directing Club/WARDROBE WARS.webp",
+    clubName: "Managing and Directing Club",
+    description: "Managing and Directing Club event",
+  },
+  // Spicmacay
+  {
+    eventName: "Jam Project 3.0",
+    image: "/Events Posters/Spicmacay/JAM PROJECT 3.0.jpg",
+    clubName: "Spicmacay",
+    description: "Spicmacay club event",
   },
 ];
 
