@@ -30,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" style={{ backgroundColor: "#050316" }}>
       <head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="theme-color" content="#050316" />
         <meta name="background-color" content="#050316" />
         {/* Explicit viewport meta to replace viewport in metadata export */}

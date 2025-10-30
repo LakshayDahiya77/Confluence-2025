@@ -39,7 +39,7 @@ export default function Card(props: inputProps) {
         ease: [0.22, 0.61, 0.36, 1],
       }}
     >
-      <div className="grid gap-4 sm:gap-6 md:grid-cols-[minmax(220px,380px)_minmax(500px,1fr)]">
+      <div className="grid gap-4 sm:gap-6 w-full grid-cols-1 md:grid-cols-[minmax(220px,380px)_minmax(500px,1fr)]">
         <motion.div
           className="flex flex-col gap-4 sm:gap-6"
           initial={{ opacity: 0, x: -30 }}
@@ -110,17 +110,17 @@ export default function Card(props: inputProps) {
             style={{
               ...tileInnerStyle,
               aspectRatio: "3 / 2",
-              minHeight: "300px",
-              maxHeight: "600px",
+              minHeight: "180px",
+              maxHeight: "400px",
             }}
           >
             <Image
               src={props.image}
               alt={props.image || props.title}
               fill
-              className="object-cover"
+              className="object-cover rounded-[16px]"
               priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1536px) 70vw, 1000px"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1000px"
             />
           </div>
         </motion.article>

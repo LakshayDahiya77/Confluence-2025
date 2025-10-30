@@ -22,33 +22,39 @@ export default function Gallery() {
       ref={sectionRef}
       className="flex w-full max-w-[100vw] items-center justify-center overflow-x-hidden"
     >
-      <div
-        className={`${contentContainerClass} section-content flex flex-col items-center justify-center`}
+      <section
+        ref={sectionRef}
+        className="w-full flex flex-col items-center justify-center overflow-x-hidden px-2 sm:px-4 md:px-8"
+        style={{ minHeight: "100vh" }}
       >
-        <h1 className="section-heading text-center text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-          GALLERY
-        </h1>
+        <div
+          className={`${contentContainerClass} section-content flex flex-col items-center justify-center w-full`}
+        >
+          <h1 className="section-heading text-center text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            GALLERY
+          </h1>
 
-        {/* Single Card Display */}
-        {paginatedImages[0] && (
-          <Card
-            title={paginatedImages[0].title}
-            content={paginatedImages[0].content}
-            image={paginatedImages[0].image}
-            day={paginatedImages[0].day}
-            vector={paginatedImages[0].vector}
+          {/* Single Card Display */}
+          {paginatedImages[0] && (
+            <Card
+              title={paginatedImages[0].title}
+              content={paginatedImages[0].content}
+              image={paginatedImages[0].image}
+              day={paginatedImages[0].day}
+              vector={paginatedImages[0].vector}
+            />
+          )}
+
+          {/* Pagination Controls */}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+            sectionRef={sectionRef}
+            className="mt-8"
           />
-        )}
-
-        {/* Pagination Controls */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-          sectionRef={sectionRef}
-          className="mt-8"
-        />
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
